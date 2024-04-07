@@ -58,8 +58,10 @@ DB_ws["AF1"] = "Designation societe";
 DB_ws["AG1"] = "Unité de quantité";
 
 DB_ws["AH1"] = "Quantité";
+DB_ws["AI1"] = "Taux unité de quantité";
 
-DB_ws["AG1"] = "Taux unité de quantité";
+DB_ws["AJ1"] = "Code mouvement";
+DB_ws["AK1"] = "Designation mouvement";
 
 
 
