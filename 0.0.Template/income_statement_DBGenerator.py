@@ -1,8 +1,9 @@
 from openpyxl import *
+from random import randint
 
 ENTREPRISE_NAME = "Entreprise fictive";
 EMPLOYEES = 5000;
-TEMPORARY_WORKERS = 500;
+TEMPORARY_WORKERS = randint(round(EMPLOYEES * 0.07), round(EMPLOYEES * 0.12));
 
 income_statement_DB_file = Workbook();
 DB_ws = income_statement_DB_file.active;
@@ -62,6 +63,20 @@ DB_ws["AI1"] = "Taux unité de quantité";
 
 DB_ws["AJ1"] = "Code mouvement";
 DB_ws["AK1"] = "Designation mouvement";
+
+
+def cellToNums(cell) :
+    pass
+
+def numsToCell(row, col) :
+    pass
+
+
+def rangeToNums(range) : 
+    pass
+
+def numsToRange(startRow, startCol, endRow, endCol) : 
+    pass
 
 
 
