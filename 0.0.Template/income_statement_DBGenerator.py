@@ -3,17 +3,49 @@ from random import randint
 
 ENTREPRISE_NAME = "Entreprise fictive";
 EMPLOYEES = 5000;
-TEMPORARY_WORKERS = randint(round(EMPLOYEES * 0.07), round(EMPLOYEES * 0.12));
+TEMP_WORK = randint(round(EMPLOYEES * 0.07), round(EMPLOYEES * 0.12));
+TEMP_WORK_5_LAST_YEARS = TEMP_WORK * 12 * 5
+
+COST_CENTER = {
+    "6200" : "Usine",
+    "6201" : "Montage",
+    "6202" : "Usinage",
+    "6203" : "Magasin",
+    "6204" : "Expédition",
+    "6205" : "Reception",
+    "6206" : "Restauration",
+    "6207" : "Propreté",
+    "6208" : "Logistique"
+}
 
 income_statement_DB_file = Workbook();
 DB_ws = income_statement_DB_file.active;
 DB_ws.title = "DB";
 
 DB_ws["A1"] = "Nature comptable";
+for i in range(2, (TEMP_WORK * 12 * 5) + 2): 
+    DB_ws.cell(row = i, column = 1).value = "62110001";
+
 DB_ws["B1"] = "Designation comptable";
+for i in range(2, (TEMP_WORK * 12 * 5) + 2): 
+    DB_ws.cell(row = i, column = 2).value = "Personnel intérimaire";
+
 
 DB_ws["C1"] = "Centre de coût";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 3).value = randint(6200, 6208);
+
 DB_ws["D1"] = "Designation centre de coût";
+# Saisie des désignations des centres de coûts des 5 dernières années
+# En fonction des centres de coûts
+for i in range(2, (TEMP_WORK * 12 * 5) + 2): 
+    for ii in range(1, len(COST_CENTER)) :
+
+        cellValue = str(DB_ws.cell(row = i, column = 3).value);
+
+        if(COST_CENTER[cellValue]) : 
+            DB_ws.cell(row = i, column = 4).value = COST_CENTER[cellValue];
+
 
 DB_ws["E1"] = "Centre de profit";
 DB_ws["F1"] = "Designation centre de profit";
