@@ -18,6 +18,18 @@ COST_CENTER = {
     "6208" : "Logistique"
 }
 
+PROFIT_CENTER = {
+    "7200" : "Usine",
+    "7201" : "Montage",
+    "7202" : "Usinage",
+    "7203" : "Magasin",
+    "7204" : "Expédition",
+    "7205" : "Reception",
+    "7206" : "Restauration",
+    "7207" : "Propreté",
+    "7208" : "Logistique"
+}
+
 income_statement_DB_file = Workbook();
 DB_ws = income_statement_DB_file.active;
 DB_ws.title = "DB";
@@ -51,11 +63,20 @@ DB_ws["E1"] = "Centre de profit";
 DB_ws["F1"] = "Designation centre de profit";
 
 DB_ws["G1"] = "Montant";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 7).value = randint(4000, 5000);
 DB_ws["H1"] = "Type Piece";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 8).value = "Facture";
 
 DB_ws["I1"] = "Nom";
 DB_ws["J1"] = "Prenom";
 DB_ws["K1"] = "Matricule";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    NbTempWork = randint(1, TEMP_WORK)
+    DB_ws.cell(row = i, column = 9).value = "nom" + str(NbTempWork);
+    DB_ws.cell(row = i, column = 10).value = "prenom" + str(NbTempWork);
+    DB_ws.cell(row = i, column = 11).value = "1000" + str(NbTempWork);
 
 DB_ws["L1"] = "Periode d'effet";
 DB_ws["M1"] = "Debut periode";
