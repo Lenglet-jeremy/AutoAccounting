@@ -1,10 +1,22 @@
 from openpyxl import *
 from random import randint
+import datetime
 
 ENTREPRISE_NAME = "Entreprise fictive";
 EMPLOYEES = 5000;
 TEMP_WORK = randint(round(EMPLOYEES * 0.07), round(EMPLOYEES * 0.12));
-TEMP_WORK_5_LAST_YEARS = TEMP_WORK * 12 * 5
+TEMP_WORK_5_LAST_YEARS = TEMP_WORK * 12 * 5;
+print(TEMP_WORK)
+
+CurrentDay = datetime.date.today()
+
+def lastDayOfPreviousMounth(date) : 
+    if(str(date).split("-")):
+        date = date.replace(day = 1)
+        last_month = date - datetime.timedelta(days=1)
+        return last_month
+
+lastDayOfPreviousMounth(CurrentDay)
 
 COST_CENTER = {
     "6200" : "Usine",
@@ -48,8 +60,9 @@ for i in range(2, TEMP_WORK_5_LAST_YEARS + 2):
     DB_ws.cell(row = i, column = 3).value = randint(6200, 6208);
 
 DB_ws["D1"] = "Designation centre de coût";
-# Saisie des désignations des centres de coûts des 5 dernières années
-# En fonction des centres de coûts
+# # Saisie des désignations des centres de coûts des 5 dernières années
+# # En fonction des centres de coûts
+a = 0
 for i in range(2, (TEMP_WORK * 12 * 5) + 2): 
     for ii in range(1, len(COST_CENTER)) :
 
@@ -57,6 +70,7 @@ for i in range(2, (TEMP_WORK * 12 * 5) + 2):
 
         if(COST_CENTER[cellValue]) : 
             DB_ws.cell(row = i, column = 4).value = COST_CENTER[cellValue];
+        
 
 
 DB_ws["E1"] = "Centre de profit";
@@ -69,6 +83,7 @@ DB_ws["H1"] = "Type Piece";
 for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
     DB_ws.cell(row = i, column = 8).value = "Facture";
 
+
 DB_ws["I1"] = "Nom";
 DB_ws["J1"] = "Prenom";
 DB_ws["K1"] = "Matricule";
@@ -76,7 +91,7 @@ for i in range(2, TEMP_WORK_5_LAST_YEARS + 2):
     NbTempWork = randint(1, TEMP_WORK)
     DB_ws.cell(row = i, column = 9).value = "nom" + str(NbTempWork);
     DB_ws.cell(row = i, column = 10).value = "prenom" + str(NbTempWork);
-    DB_ws.cell(row = i, column = 11).value = "1000" + str(NbTempWork);
+    DB_ws.cell(row = i, column = 11).value = 100000 + int(NbTempWork);
 
 DB_ws["L1"] = "Periode d'effet";
 DB_ws["M1"] = "Debut periode";
@@ -133,4 +148,4 @@ def numsToRange(startRow, startCol, endRow, endCol) :
 
 
 
-income_statement_DB_file.save("C:/Users/JL/Documents/2.0-AutoAccounting/0.0.Template/income_statement_DB_file.xlsx");
+income_statement_DB_file.save("./0.0.Template/income_statement_DB_file.xlsx");
