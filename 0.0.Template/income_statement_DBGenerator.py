@@ -6,6 +6,7 @@ ENTREPRISE_NAME = "Entreprise fictive";
 EMPLOYEES = 5000;
 TEMP_WORK = randint(round(EMPLOYEES * 0.07), round(EMPLOYEES * 0.12));
 TEMP_WORK_5_LAST_YEARS = TEMP_WORK * 12 * 5;
+NbTempWork = 0
 print(TEMP_WORK)
 
 CurrentDay = datetime.date.today()
@@ -15,6 +16,8 @@ def lastDayOfPreviousMounth(date) :
         date = date.replace(day = 1)
         last_month = date - datetime.timedelta(days=1)
         return last_month
+    
+retroActiveDay = lastDayOfPreviousMounth(CurrentDay)
 
 lastDayOfPreviousMounth(CurrentDay)
 
@@ -78,7 +81,7 @@ DB_ws["F1"] = "Designation centre de profit";
 
 DB_ws["G1"] = "Montant";
 for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
-    DB_ws.cell(row = i, column = 7).value = randint(4000, 5000);
+    DB_ws.cell(row = i, column = 7).value = 2000;
 DB_ws["H1"] = "Type Piece";
 for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
     DB_ws.cell(row = i, column = 8).value = "Facture";
@@ -87,47 +90,87 @@ for i in range(2, TEMP_WORK_5_LAST_YEARS + 2):
 DB_ws["I1"] = "Nom";
 DB_ws["J1"] = "Prenom";
 DB_ws["K1"] = "Matricule";
-for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
-    NbTempWork = randint(1, TEMP_WORK)
-    DB_ws.cell(row = i, column = 9).value = "nom" + str(NbTempWork);
-    DB_ws.cell(row = i, column = 10).value = "prenom" + str(NbTempWork);
-    DB_ws.cell(row = i, column = 11).value = 100000 + int(NbTempWork);
-
 DB_ws["L1"] = "Periode d'effet";
 DB_ws["M1"] = "Debut periode";
 DB_ws["N1"] = "Fin periode";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    if NbTempWork < TEMP_WORK : 
+        NbTempWork = NbTempWork + 1
+    else:
+        NbTempWork = 1
+        retroActiveDay = lastDayOfPreviousMounth(retroActiveDay)
+
+    DB_ws.cell(row = i, column = 9).value = "nom" + str(NbTempWork);
+    DB_ws.cell(row = i, column = 10).value = "prenom" + str(NbTempWork);
+    DB_ws.cell(row = i, column = 11).value = 100000 + int(NbTempWork);
+    DB_ws.cell(row = i, column = 12).value = retroActiveDay;
+    DB_ws.cell(row = i, column = 13).value = retroActiveDay.replace(day = 1);
+    DB_ws.cell(row = i, column = 14).value = retroActiveDay;
 
 DB_ws["O1"] = "N° piece reference";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column =15).value = "0000000000" + str(i-1);
 
 DB_ws["P1"] = "Utilisateur ecriture";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column =16).value = "UTIL1";
 
 DB_ws["Q1"] = "Date piece";
 DB_ws["R1"] = "Date comptable";
 DB_ws["S1"] = "Date de saisie";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    if NbTempWork < TEMP_WORK : 
+        NbTempWork = NbTempWork + 1
+    else:
+        NbTempWork = 1
+        retroActiveDay = lastDayOfPreviousMounth(retroActiveDay)
+    DB_ws.cell(row = i, column = 17).value = retroActiveDay.replace(day = retroActiveDay.day-1);
+    DB_ws.cell(row = i, column = 18).value = retroActiveDay;
+    DB_ws.cell(row = i, column = 19).value = retroActiveDay;
 
 DB_ws["T1"] = "Compte contre partie";
 DB_ws["U1"] = "Designation compte contre partie";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 20).value = "40110000";
+    DB_ws.cell(row = i, column = 21).value = "Fournisseurs - Achats de biens et prestations de services";
+
 
 DB_ws["V1"] = "N° Ecriture";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 22).value = "70000000" + str(i-1);
 
 DB_ws["W1"] = "Commentaire ecriture";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 23).value = "Commentaire";
 
 DB_ws["X1"] = "N° contre passation";
 DB_ws["Y1"] = "Commentaire contre passation";
 
 DB_ws["Z1"] = "Devise";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 26).value = "€";
 DB_ws["AA1"] = "Convertion en euros";
 DB_ws["AB1"] = "Date convertion";
 DB_ws["AC1"] = "Taux convertion";
 DB_ws["AD1"] = "Source convertion";
 
 DB_ws["AE1"] = "Societe";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 31).value = "1001";
 DB_ws["AF1"] = "Designation societe";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 32).value = "Agenge d'interim";
 
 DB_ws["AG1"] = "Unité de quantité";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 33).value = "Heures";
 
 DB_ws["AH1"] = "Quantité";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 34).value = 140;
 DB_ws["AI1"] = "Taux unité de quantité";
+for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
+    DB_ws.cell(row = i, column = 35).value = 14.29;
 
 DB_ws["AJ1"] = "Code mouvement";
 DB_ws["AK1"] = "Designation mouvement";
