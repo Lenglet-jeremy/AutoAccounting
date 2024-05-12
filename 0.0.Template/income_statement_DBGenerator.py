@@ -58,7 +58,7 @@ for i in range(2, (TEMP_WORK * 12 * 5) + 2):
     DB_ws.cell(row = i, column = 1).value = "62110001";
 
 DB_ws["B1"] = "Designation comptable";
-DB_ws.column_dimensions["B"].width = len("Designation comptable") + 1;
+DB_ws.column_dimensions["B"].width = len("Medecine du travail, pharmacie") + 1;
 for i in range(2, (TEMP_WORK * 12 * 5) + 2): 
     DB_ws.cell(row = i, column = 2).value = "Personnel intérimaire";
 
@@ -99,9 +99,9 @@ for i in range(2, TEMP_WORK_5_LAST_YEARS + 2):
 
 
 DB_ws["I1"] = "Nom";
-DB_ws.column_dimensions["I"].width = len("Nom") + 5;
+DB_ws.column_dimensions["I"].width = len("Nom") + 7;
 DB_ws["J1"] = "Prenom";
-DB_ws.column_dimensions["J"].width = len("Prenom") + 5;
+DB_ws.column_dimensions["J"].width = len("Prenom") + 7;
 DB_ws["K1"] = "Matricule";
 DB_ws.column_dimensions["K"].width = len("Matricule") + 1;
 DB_ws["L1"] = "Periode d'effet";
@@ -235,7 +235,7 @@ for i in range(2, round(EMPLOYEES * 2.5) + 2) :
     DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 9).value = "Nom" + str(NbEmployee)
     DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 10).value = "Prenom" + str(NbEmployee)
     DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 11).value = 100000 + int(NbEmployee)
-    if (NbEmployee / 12) % 2500 == 0: 
+    if NbEmployee % round(EMPLOYEES / 12 / 2) == 0: 
         retroActiveDay = lastDayOfPreviousMounth(retroActiveDay)
     DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 12).value = retroActiveDay
 
