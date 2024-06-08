@@ -92,6 +92,7 @@ DB_ws["G1"] = "Montant";
 DB_ws.column_dimensions["G"].width = len("Montant") + 1;
 for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
     DB_ws.cell(row = i, column = 7).value = 2000;
+
 DB_ws["H1"] = "Type Piece";
 DB_ws.column_dimensions["H"].width = len("Type Piece") + 1;
 for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
@@ -220,24 +221,35 @@ DB_ws.column_dimensions["AK"].width = len("Designation mouvement") + 1;
 retroActiveDay = lastDayOfPreviousMounth(CurrentDay)
 # Medecine de travail
 for i in range(2, round(EMPLOYEES * 2.5) + 2) :
-    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 1).value = "64750000"
-    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 2).value = "Medecine du travail, pharmacie"
-    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 3).value = "6200"
-    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 4).value = "Usine"
-    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 7).value = 1500
-    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 8).value = "Facture"
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 1).value = "64750000";
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 2).value = "Medecine du travail, pharmacie";
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 3).value = 6200;
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 4).value = "Usine";
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 7).value = 1500;
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 8).value = "Facture";
     
     if NbEmployee < EMPLOYEES : 
         NbEmployee = NbEmployee + 1
     else:
         NbEmployee = 1
         # retroActiveDay = lastDayOfPreviousMounth(retroActiveDay)
-    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 9).value = "Nom" + str(NbEmployee)
-    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 10).value = "Prenom" + str(NbEmployee)
-    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 11).value = 100000 + int(NbEmployee)
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 9).value = "Nom" + str(NbEmployee);
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 10).value = "Prenom" + str(NbEmployee);
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 11).value = 100000 + int(NbEmployee);
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 14).value = "0000000000" + str(i-1);
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 15).value = "UTIL1";
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 19).value = "40110000";
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 20).value = "Fournisseurs - Achats de biens et prestations de services";
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 22).value = "Commentaire";
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 25).value = "€";
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 30).value = "1001";
     if NbEmployee % round(EMPLOYEES / 12 / 2) == 0: 
         retroActiveDay = lastDayOfPreviousMounth(retroActiveDay)
-    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 12).value = retroActiveDay
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 12).value = retroActiveDay;
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 16).value = retroActiveDay;
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 17).value = retroActiveDay;
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 18).value = retroActiveDay;
+    DB_ws.cell(row = TEMP_WORK_5_LAST_YEARS + i, column = 21).value = "70000000" + str(i-1);
 
 def cellToNums(cell) :
     pass
