@@ -142,6 +142,9 @@ DB_ws["R1"] = "Date comptable";
 DB_ws.column_dimensions["R"].width = len("Date comptable") + 1;
 DB_ws["S1"] = "Date de saisie";
 DB_ws.column_dimensions["S"].width = len("Date de saisie") + 1;
+
+
+retroActiveDay = lastDayOfPreviousMounth(CurrentDay)
 for i in range(2, TEMP_WORK_5_LAST_YEARS + 2): 
     if NbTempWork < TEMP_WORK : 
         NbTempWork = NbTempWork + 1
@@ -409,31 +412,21 @@ for i in range(2, 12*5 + 2) :
     DB_ws.cell(row = nbOfLine, column = 34).value = 140;
     DB_ws.cell(row = nbOfLine, column = 35).value = 15;
 
-# # A optimiser !!!
-# print("nbOfLine", nbOfLine)
-# simulingNotReachedInvoice = randint(round(nbOfLine *0.1), round(nbOfLine * 0.2))
-
-
-# for i in range(1, simulingNotReachedInvoice) :
-#     DB_ws.delete_rows(round(randint(1, nbOfLine)))
-#     print("simulingNotReachedInvoice", simulingNotReachedInvoice)
-#     print("Deleted line", i)
-
 #================================================================================================
-# from random import sample
+from random import sample
 
-# # Déterminez le nombre de lignes à supprimer
-# num_rows_to_delete = randint(round(nbOfLine * 0.1), round(nbOfLine * 0.2))
+# Déterminez le nombre de lignes à supprimer
+num_rows_to_delete = randint(round(nbOfLine * 0.1), round(nbOfLine * 0.2))
 
-# # Générez une liste d'indices de lignes à supprimer
-# rows_to_delete = sample(range(1, nbOfLine+1), num_rows_to_delete)
-# # Triez la liste en ordre décroissant pour éviter de modifier les indices des lignes restantes lors de la suppression
-# rows_to_delete.sort(reverse=True)
+# Générez une liste d'indices de lignes à supprimer
+rows_to_delete = sample(range(1, nbOfLine+1), num_rows_to_delete)
+# Triez la liste en ordre décroissant pour éviter de modifier les indices des lignes restantes lors de la suppression
+rows_to_delete.sort(reverse=True)
 
-# # Supprimez toutes les lignes en une seule opération
-# for row in rows_to_delete:
-#     DB_ws.delete_rows(row)
-#     print(" ", row)
+# Supprimez toutes les lignes en une seule opération
+for row in rows_to_delete:
+    DB_ws.delete_rows(row)
+    print(" ", row)
 #================================================================================================
 
 
